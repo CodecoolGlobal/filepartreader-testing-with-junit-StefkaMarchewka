@@ -17,4 +17,19 @@ public class FileWordAnalyzer {
         return result;
     }
 
+    public List getWordsContainingSubstring (String subString ){
+        List<String> result = new ArrayList<>();
+        String toProcess = partReader.readLines().replaceAll("\n", " ").toLowerCase();
+        String[] wordFromLine = toProcess.split(" ");
+
+        for (String word:wordFromLine) {
+            if (word.contains(subString)){
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
+
+
 }
