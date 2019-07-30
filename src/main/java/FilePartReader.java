@@ -13,13 +13,6 @@ public class FilePartReader {
 
     }
 
-
-    public static void main(String[] args) {
-        FilePartReader f = new FilePartReader();
-        f.setup("test2.txt", 1, 3);
-        System.out.println(f.readLines());
-    }
-
     public void setup (String filePath, Integer fromLine, Integer toLine){
         if(fromLine < 1){
             throw new IllegalArgumentException();
