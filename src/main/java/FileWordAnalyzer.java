@@ -31,5 +31,33 @@ public class FileWordAnalyzer {
         return result;
     }
 
+    public List getStringsWhichPalindromes (){
+        List<String> result = new ArrayList<>();
+        String toProcess = partReader.readLines().replaceAll("\n", " ").toLowerCase();
+        String[] wordFromLine = toProcess.split(" ");
+        for (String word: wordFromLine){
+            String firstHalf = "";
+            String secondHalf = " ";
+            if ((word.length())%2 == 0 && !(word.equals(""))){
+                firstHalf = word.substring(0, word.length()/2);
+                secondHalf = word.substring(word.length()/2);
+            }
+            else {
+                if (word.length() > 1) {
+                    firstHalf = word.substring(0, word.length() / 2);
+                    secondHalf = word.substring(word.length() / 2 + 1);
+                }
+
+
+            }
+            String reversedSecond = new StringBuilder(secondHalf).reverse().toString();
+            if (firstHalf.equals(reversedSecond)){
+                result.add(word);
+            }
+        }
+
+        return result;
+    }
+
 
 }
