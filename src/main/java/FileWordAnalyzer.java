@@ -36,22 +36,24 @@ public class FileWordAnalyzer {
         String toProcess = partReader.readLines().replaceAll("\n", " ").toLowerCase();
         String[] wordFromLine = toProcess.split(" ");
         for (String word: wordFromLine){
-            String firstHalf = "";
-            String secondHalf = " ";
+            Optional<String> firstHalf = Optional.empty();
+            Optional<String> secondHalf = Optional.empty();
             if ((word.length())%2 == 0 && !(word.equals(""))){
-                firstHalf = word.substring(0, word.length()/2);
-                secondHalf = word.substring(word.length()/2);
+                firstHalf = Optional.of(word.substring(0, word.length()/2));
+                secondHalf = Optional.of(word.substring(word.length()/2));
             }
             else {
                 if (word.length() > 1) {
-                    firstHalf = word.substring(0, word.length() / 2);
-                    secondHalf = word.substring(word.length() / 2 + 1);
+                    firstHalf = Optional.of(word.substring(0, word.length() / 2));
+                    secondHalf = Optional.of(word.substring(word.length() / 2 + 1));
                 }
-
-
+                else {
+                    firstHalf = Optional.of("");
+                    secondHalf = Optional.of(" ");
+                }
             }
-            String reversedSecond = new StringBuilder(secondHalf).reverse().toString();
-            if (firstHalf.equals(reversedSecond)){
+            String reversedSecond = new StringBuilder(secondHalf.get()).reverse().toString();
+            if (firstHalf.get().equals(reversedSecond)){
                 result.add(word);
             }
         }
