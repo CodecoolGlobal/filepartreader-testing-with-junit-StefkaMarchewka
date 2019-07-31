@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class FilePartReader {
@@ -10,21 +7,22 @@ public class FilePartReader {
     int toLine;
 
     public FilePartReader(){
-
+        toLine = 0;
+        fromLine = 100;
     }
 
     public void setup (String filePath, Integer fromLine, Integer toLine){
-        if(fromLine < 1){
+
+        if (fromLine < 1) {
             throw new IllegalArgumentException();
-        }
-        else if (toLine < fromLine){
+        } else if (toLine < fromLine) {
             throw new IllegalArgumentException();
-        }
-        else {
+        } else {
             this.filePath = filePath;
-            this.fromLine = fromLine-1;
-            this.toLine = toLine-1;
+            this.fromLine = fromLine - 1;
+            this.toLine = toLine - 1;
         }
+
     }
 
     public String readLines (){
@@ -41,7 +39,7 @@ public class FilePartReader {
         return result.toString();
     }
 
-    public String read () {
+    public String read() {
         StringBuilder allContent = new StringBuilder();
         try {
             File file = new File(filePath);
@@ -52,7 +50,7 @@ public class FilePartReader {
         }catch (IOException exc){
             exc.printStackTrace();
         }
-        return allContent.toString();
+        return allContent.toString().trim();
     }
 
 }
