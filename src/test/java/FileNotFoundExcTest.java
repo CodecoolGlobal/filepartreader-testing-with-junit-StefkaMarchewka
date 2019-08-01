@@ -1,4 +1,5 @@
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 
@@ -14,6 +15,7 @@ public class FileNotFoundExcTest {
         reader.setup("test", 1, 3);
     }
 
+    @Ignore
     @Test(expected=FileNotFoundException.class)
     public void isExceptionThrownWhenWrongFilePath() throws Exception{
         reader = new FilePartReader();

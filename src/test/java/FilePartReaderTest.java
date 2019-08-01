@@ -1,4 +1,5 @@
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.jupiter.api.Disabled;
 import org.mockito.Mockito;
@@ -41,6 +42,7 @@ public class FilePartReaderTest {
     }
 
     @Test
+    @Ignore
     public void isReadMethodCalledInReadLines(){
         FilePartReader fileReaderMock = Mockito.mock(FilePartReader.class);
         fileReaderMock.readLines();
