@@ -9,17 +9,13 @@ public class FileNotFoundExcTest {
 
     FilePartReader reader;
     @Before
-    @Disabled
     public void setup(){
         reader = new FilePartReader();
         reader.setup("test", 1, 3);
     }
 
-    @Ignore
     @Test(expected=FileNotFoundException.class)
     public void isExceptionThrownWhenWrongFilePath() throws Exception{
-        reader = new FilePartReader();
-        reader.setup("test", 1, 3);
         reader.read();
     }
 

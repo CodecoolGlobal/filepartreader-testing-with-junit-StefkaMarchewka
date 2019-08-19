@@ -26,7 +26,12 @@ public class FilePartReader {
     }
 
     public String readLines (){
-        String allContent = read();
+        String allContent = "";
+        try {
+            allContent = read();
+        }catch (IOException exc){
+            System.out.println("there is no such file");
+        }
         String[] lines = allContent.split( "\n" );
         Map<Integer, String> mapWithLines = new HashMap<>();
         StringBuilder result = new StringBuilder();
@@ -39,17 +44,15 @@ public class FilePartReader {
         return result.toString();
     }
 
-    public String read() {
+    public String read() throws IOException {
         StringBuilder allContent = new StringBuilder();
-        try {
+
             File file = new File(filePath);
             BufferedReader br = new BufferedReader(new FileReader(file));
             String st;
             while ((st = br.readLine()) != null)
                 allContent.append(st + System.lineSeparator());
-        }catch (IOException exc){
-            exc.printStackTrace();
-        }
+
         return allContent.toString().trim();
     }
 
